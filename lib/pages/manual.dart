@@ -148,7 +148,9 @@ class _ManualAlertState extends State<ManualAlert> {
     children: [
       Text('Level', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
       SizedBox(height: 8),
+      
       Row(
+        
         children: [
           IconButton(
             onPressed: () {
@@ -157,7 +159,7 @@ class _ManualAlertState extends State<ManualAlert> {
                 selectedLevel--;
                 _scrollController.animateTo(
                   _scrollController.offset - 50,
-                  duration: Duration(milliseconds: 300),
+                  duration: Duration(milliseconds: 100),
                   curve: Curves.easeOut,
                 );
               });
@@ -165,12 +167,13 @@ class _ManualAlertState extends State<ManualAlert> {
             icon: Icon(Icons.chevron_left),
           ),
           Expanded(
+            
             child: SingleChildScrollView(
               controller: _scrollController,
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  for (int i = -2; i <= 5; i++)
+                  for (int i = -2; i <= 10; i++)
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4),
                       child: InkWell(
@@ -195,7 +198,7 @@ class _ManualAlertState extends State<ManualAlert> {
           IconButton(
             onPressed: () {
               setState(() {
-                if (selectedLevel >= 5) return;
+                if (selectedLevel >= 10) return;
                 selectedLevel++;
                 _scrollController.animateTo(
                   _scrollController.offset + 50,

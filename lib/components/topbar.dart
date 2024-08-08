@@ -26,6 +26,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
             color: Color(0xFFDDDDDD),
           ),
           onPressed: () {
+            // Navigator.pushReplacementNamed(context, '/');
             // ScaffoldMessenger.of(context).showSnackBar(
             //   const SnackBar(content: Text('Notifications pressed')),
             // );

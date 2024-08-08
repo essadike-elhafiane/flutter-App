@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/pages/manual.dart';
+import 'package:flutter_application_2/pages/welcomePage.dart';
 import './components/bottombar.dart' ; // Import the top bar widget
 import './components/body.dart'; // Import the body widget
 import './components/topbar.dart'; // Import the bottom bar widget
@@ -14,12 +15,28 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => WelcomePage(),
+        '/home': (context) => const MyHomePage(), // Replace with your actual home page widget
+      },
     );
   }
 }
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.grey,
+//       ),
+//       home: const MyHomePage(),
+//     );
+//   }
+// }
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -37,6 +54,7 @@ class MyHomePage extends StatelessWidget {
           color: Colors.blue,
         ),
         child: FloatingActionButton(
+          shape: const CircleBorder(),
           onPressed: () {
             Navigator.push(
               context,

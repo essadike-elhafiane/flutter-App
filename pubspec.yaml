@@ -72,6 +72,8 @@ flutter:
     - assets/images/Vector5.svg
     - assets/images/report.svg
     - assets/images/report.png
+    - assets/images/screen.svg
+    - assets/images/screen.png
     - assets/images/img.jpg
     - assets/images/observationIcon.png
     - assets/images/observationIcon1.svg

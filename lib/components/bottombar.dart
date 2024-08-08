@@ -62,6 +62,7 @@ class _BottombarState extends State<Bottombar> {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: InkWell(
+              borderRadius: BorderRadius.circular(10.0),
               onTap: () => _onItemTapped(index),
               child: SvgPicture.asset(
                 assetPath,
