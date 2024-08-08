@@ -222,7 +222,7 @@ class Body extends StatelessWidget {
           ItemsView(),
           const SizedBox(height: 10),
           const ObservationChart(),
-           ProgressChart(),
+           const ProgressChart(),
         ],
       ),
     );
@@ -255,7 +255,7 @@ class ItemsView extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Row(
                   children: [

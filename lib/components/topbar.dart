@@ -53,9 +53,10 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
           border: Border(
             bottom: BorderSide(
               color: Color.fromARGB(255, 128, 126, 126),
-              width: 0.5,
+              width: 0.1,
             ),
           ),
+          
         ),
       ),
     );
