@@ -340,30 +340,74 @@ class _ManualAlertState extends State<ManualAlert> {
   }
 }
 
-Widget _buildSendAlertButton() {
-  return InkWell(
-    onTap: () {
-      // Your custom action
-    },
-    child: Container(
-      width: double.infinity,
-      height: 44,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Color(0xFF25A5DC),
-        borderRadius: BorderRadius.circular(8),
+
+
+class _buildSendAlertButton extends StatefulWidget {
+  @override
+  __buildSendAlertButtonState createState() => __buildSendAlertButtonState();
+}
+
+class __buildSendAlertButtonState extends State<_buildSendAlertButton> {
+  double _opacity = 1.0;
+
+  void _onTapDown(TapDownDetails details) {
+    setState(() {
+      _opacity = 0.5; // Decrease opacity
+    });
+  }
+
+  void _onTapUp(TapUpDetails details) {
+    setState(() {
+      _opacity = 1.0; // Restore opacity
+    });
+  }
+
+  void _onTapCancel() {
+    setState(() {
+      _opacity = 1.0; // Restore opacity
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: _onTapDown,
+      onTapUp: _onTapUp,
+      onTapCancel: _onTapCancel,
+      onTap: () {
+        // Handle tap
+      },
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 100),
+        opacity: _opacity,
+        child: Container(
+          width: double.infinity,
+          height: 44,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Color(0xFF25A5DC),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.send,
+                color: Colors.white,
+              ),
+              const SizedBox(width: 8), // Add spacing between the icon and text
+              const Text(
+                'Send Alert',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        const Icon(
-          Icons.send,
-          color: Colors.white,
-        ),
-        Text(
-          'Send Alert',
-          style: TextStyle(
-              color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-      ]),
-    ),
-  );
+    );
+  }
 }
