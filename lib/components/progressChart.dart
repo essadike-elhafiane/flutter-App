@@ -1,8 +1,31 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class ProgressChart extends StatelessWidget {
-  const ProgressChart({Key? key}) : super(key: key);
+class ProgressChart extends StatefulWidget {
+  const ProgressChart({super.key});
+  @override
+  _ProgressChartState createState() => _ProgressChartState();
+}
+
+class _ProgressChartState extends State<ProgressChart> {
+  int? touchedIndex;
+  Timer? _timer;
+
+  void _startHideTimer() {
+    _timer?.cancel();
+    _timer = Timer(const Duration(seconds: 1), () {
+      setState(() {
+        touchedIndex = null;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +34,6 @@ class ProgressChart extends StatelessWidget {
       margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 40.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Container(
-        // padding: const EdgeInsets.all(2.0),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -51,7 +73,6 @@ class ProgressChart extends StatelessWidget {
                   ),
                 ],
               ),
-              // const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -63,30 +84,53 @@ class ProgressChart extends StatelessWidget {
                         sectionsSpace: 2,
                         centerSpaceRadius: 40,
                         centerSpaceColor: Colors.white,
+                        pieTouchData: PieTouchData(
+                          touchCallback:
+                              (FlTouchEvent event, PieTouchResponse? response) {
+                            setState(() {
+                              if (response != null &&
+                                  response.touchedSection != null) {
+                                touchedIndex = response
+                                    .touchedSection!.touchedSectionIndex;
+                                _startHideTimer(); // Start the timer to hide the tooltip
+                              } else {
+                                touchedIndex = null;
+                              }
+                            });
+                          },
+                        ),
                         sections: [
                           PieChartSectionData(
                             color: Colors.blue,
                             value: 40,
                             title: '',
-                            radius: 30,
+                            radius: touchedIndex == 0 ? 32 : 30,
+                            badgeWidget:
+                                touchedIndex == 0 ? _toolTip('40%') : null,
                           ),
                           PieChartSectionData(
                             color: Colors.amber,
                             value: 30,
                             title: '',
-                            radius: 30,
+                            radius: touchedIndex == 1 ? 32 : 30,
+                            badgeWidget:
+                                touchedIndex == 1 ? _toolTip('30%') : null,
                           ),
                           PieChartSectionData(
                             color: Colors.green,
                             value: 20,
                             title: '',
-                            radius: 30,
+                            radius: touchedIndex == 2 ? 32 : 30,
+                            badgeWidget:
+                                touchedIndex == 2 ? _toolTip('20%') : null,
                           ),
                           PieChartSectionData(
                             color: const Color(0xFF616161),
                             value: 10,
                             title: '',
-                            radius: 30,
+                            radius: touchedIndex == 3 ? 32 : 30,
+                            badgeWidget:
+                                touchedIndex == 3 ? _toolTip('10%') : null,
                           ),
                         ],
                       ),
@@ -128,6 +172,28 @@ class ProgressChart extends StatelessWidget {
         const SizedBox(width: 8),
         Text(label, style: const TextStyle(fontSize: 12, fontFamily: 'Nunito')),
       ],
+    );
+  }
+
+  Widget _toolTip(String value) {
+    return Tooltip(
+      message: value,
+      preferBelow: false,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: Colors.black),
+        ),
+        child: Text(
+          value,
+          style: const TextStyle(
+            fontSize: 11,
+            color: Colors.black,
+          ),
+        ),
+      ),
     );
   }
 }

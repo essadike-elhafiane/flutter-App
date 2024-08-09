@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/components/Dropdown.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ManualAlert extends StatefulWidget {
@@ -53,11 +54,14 @@ class _ManualAlertState extends State<ManualAlert> {
               _buildDropdownField('Zone', selectedZone, 2, true),
               _buildLevelSelector(),
               _buildLocationToggle(),
-              _buildDropdownField('Room', selectedRoom, 3, false,
-                  showAddOption: true),
+              const Dropdown(index: 0),
+
+              // _buildDropdownField('Room', selectedRoom, 3, false,
+              //     showAddOption: true),
               _buildPositionToggle(),
-              _buildDropdownField(
-                  'Time expected to complete the job', selectedTime, 4, false),
+              // _buildDropdownField(
+              //     'Time expected to complete the job', selectedTime, 4, false),
+              const Dropdown(index: 1),
               const SizedBox(height: 20),
               _buildSendAlertButton(),
             ],
@@ -101,7 +105,11 @@ class _ManualAlertState extends State<ManualAlert> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(value),
+                    Text(value,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400)),
                     Row(children: [
                       if (isYellow)
                         InkWell(
@@ -135,103 +143,104 @@ class _ManualAlertState extends State<ManualAlert> {
             //   ),
           ],
         ),
+        const SizedBox(height: 20),
+      ],
+    );
+  }
+
+  Widget _buildLevelSelector() {
+    final ScrollController _scrollController = ScrollController();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text('Level',
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  if (selectedLevel <= -2) return;
+                  selectedLevel--;
+                  _scrollController.animateTo(
+                    _scrollController.offset - 50,
+                    duration: const Duration(milliseconds: 100),
+                    curve: Curves.easeOut,
+                  );
+                });
+              },
+              icon: const Icon(Icons.chevron_left,color: Color(0xFFBAB9B9)),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    for (int i = -2; i <= 10; i++)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        child: InkWell(
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: i == selectedLevel
+                                  ? Colors.deepPurple
+                                  : Colors.white,
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text('$i',
+                                style: TextStyle(
+                                    color: i == selectedLevel
+                                        ? Colors.white
+                                        : Colors.black)),
+                          ),
+                          onTap: () => setState(() => selectedLevel = i),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  if (selectedLevel >= 10) return;
+                  selectedLevel++;
+                  _scrollController.animateTo(
+                    _scrollController.offset + 50,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                  );
+                });
+              },
+              icon: const Icon(Icons.chevron_right, color: Color(0xFFBAB9B9),),
+            ),
+          ],
+        ),
         const SizedBox(height: 23),
       ],
     );
   }
 
- Widget _buildLevelSelector() {
-  final ScrollController _scrollController = ScrollController();
-
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text('Level', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-      SizedBox(height: 8),
-      
-      Row(
-        
-        children: [
-          IconButton(
-            onPressed: () {
-              setState(() {
-                if (selectedLevel <= -2) return;
-                selectedLevel--;
-                _scrollController.animateTo(
-                  _scrollController.offset - 50,
-                  duration: Duration(milliseconds: 100),
-                  curve: Curves.easeOut,
-                );
-              });
-            },
-            icon: Icon(Icons.chevron_left),
-          ),
-          Expanded(
-            
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  for (int i = -2; i <= 10; i++)
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 4),
-                      child: InkWell(
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            color: i == selectedLevel ? Colors.deepPurple : Colors.white,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text('$i'),
-                        ),
-                        onTap: () => setState(() => selectedLevel = i),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                if (selectedLevel >= 10) return;
-                selectedLevel++;
-                _scrollController.animateTo(
-                  _scrollController.offset + 50,
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeOut,
-                );
-              });
-            },
-            icon: Icon(Icons.chevron_right),
-          ),
-        ],
-      ),
-      SizedBox(height: 23),
-    ],
-  );
-}
-
   Widget _buildLocationToggle() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Location',
+        const Text('Location',
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Row(
           children: [
             Expanded(
               child: InkWell(
                 child: Container(
                   alignment: Alignment.center,
-                  child: Text('Room',
-                      style: TextStyle(
-                          color: isRoomSelected ? Colors.white : Colors.black)),
                   height: 40,
                   decoration: BoxDecoration(
                     color: isRoomSelected ? Colors.deepPurple : Colors.white,
@@ -242,6 +251,9 @@ class _ManualAlertState extends State<ManualAlert> {
                     ),
                     // borderRadius: BorderRadius.circular(4),
                   ),
+                  child: Text('Room',
+                      style: TextStyle(
+                          color: isRoomSelected ? Colors.white : Colors.black)),
                 ),
                 onTap: () => setState(() => isRoomSelected = true),
               ),
@@ -273,7 +285,7 @@ class _ManualAlertState extends State<ManualAlert> {
             ),
           ],
         ),
-        SizedBox(height: 23),
+        const SizedBox(height: 13),
       ],
     );
   }
@@ -282,9 +294,9 @@ class _ManualAlertState extends State<ManualAlert> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Position',
+        const Text('Position',
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Row(
           children: [
             Expanded(
@@ -316,11 +328,6 @@ class _ManualAlertState extends State<ManualAlert> {
               child: InkWell(
                 child: Container(
                   alignment: Alignment.center,
-                  child: Text('Outside',
-                      style: TextStyle(
-                          fontSize: 14,
-                          color:
-                              !isInsideSelected ? Colors.white : Colors.black)),
                   height: 40,
                   decoration: BoxDecoration(
                     color: !isInsideSelected ? Colors.deepPurple : Colors.white,
@@ -331,19 +338,22 @@ class _ManualAlertState extends State<ManualAlert> {
                     ),
                     // borderRadius: BorderRadius.circular(4),
                   ),
+                  child: Text('Outside',
+                      style: TextStyle(
+                          fontSize: 14,
+                          color:
+                              !isInsideSelected ? Colors.white : Colors.black)),
                 ),
                 onTap: () => setState(() => isInsideSelected = false),
               ),
             ),
           ],
         ),
-        SizedBox(height: 23),
+        const SizedBox(height: 23),
       ],
     );
   }
 }
-
-
 
 class _buildSendAlertButton extends StatefulWidget {
   @override
@@ -388,18 +398,18 @@ class __buildSendAlertButtonState extends State<_buildSendAlertButton> {
           height: 44,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: Color(0xFF25A5DC),
+            color: const Color(0xFF25A5DC),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
+              Icon(
                 Icons.send,
                 color: Colors.white,
               ),
-              const SizedBox(width: 8), // Add spacing between the icon and text
-              const Text(
+              SizedBox(width: 8), // Add spacing between the icon and text
+              Text(
                 'Send Alert',
                 style: TextStyle(
                   color: Colors.white,
