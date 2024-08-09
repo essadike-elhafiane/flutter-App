@@ -79,10 +79,10 @@ flutter:
     - assets/images/observationIcon1.svg
     - assets/images/observationIcon.svg
     - assets/images/hide.svg
-    - assets/popupIcons/priority.png
-    - assets/popupIcons/tag.png
-    - assets/popupIcons/category.png
-    - assets/popupIcons/subcategory.png
+    - assets/images/priority.svg
+    - assets/images/category.svg
+    - assets/images/subcategory.svg
+    - assets/images/tag.svg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -1,11 +1,10 @@
-// topbar.dart
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   const TopBar({super.key});
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0); // Height of the AppBar
+  Size get preferredSize => const Size.fromHeight(56.0); 
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         IconButton(
           icon: ClipRRect(
-            borderRadius: BorderRadius.circular(17.5), // Half of the width/height to make it fully round
+            borderRadius: BorderRadius.circular(17.5), 
             child: Image.asset(
               'assets/images/img.jpg',
               width: 35.0,

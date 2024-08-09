@@ -79,13 +79,13 @@ class _DropdownState extends State<Dropdown> {
             ),
             iconSize: 24,
             dropdownColor: Colors.white,
-            isExpanded: true, // Makes dropdown expand to fill the container's width
+            isExpanded: true, 
             style: const TextStyle(
-              color: Colors.black, // Text color inside the dropdown
-              fontSize: 14, // Font size of the text
-              fontWeight: FontWeight.w400, // Font weight of the text
+              color: Colors.black, 
+              fontSize: 14, 
+              fontWeight: FontWeight.w400, 
             ),
-            underline: Container(), // Remove the default underline
+            underline: Container(), 
             onChanged: (String? newValue) {
               setState(() {
                 dropdownValue = newValue!;
@@ -111,6 +111,7 @@ class _DropdownState extends State<Dropdown> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text('Add Room'),
           content: TextField(
             decoration: const InputDecoration(hintText: 'Enter room name'),

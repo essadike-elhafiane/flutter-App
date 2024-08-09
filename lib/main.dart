@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/pages/manual.dart';
 import 'package:flutter_application_2/pages/welcomePage.dart';
-import './components/bottombar.dart' ; // Import the top bar widget
-import './components/body.dart'; // Import the body widget
-import './components/topbar.dart'; // Import the bottom bar widget
+import './components/bottombar.dart' ;
+import './components/body.dart'; 
+import './components/topbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,23 +20,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => WelcomePage(),
-        '/home': (context) => const MyHomePage(), // Replace with your actual home page widget
+        '/home': (context) => const MyHomePage(), 
       },
     );
   }
 }
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.grey,
-//       ),
-//       home: const MyHomePage(),
-//     );
-//   }
-// }
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -44,8 +32,8 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TopBar(), // Use the TopBar widget
-      body: const Body(), // Use the Body widget
+      appBar: const TopBar(),
+      body: const Body(), 
       floatingActionButton: Container(
         width: 60.0,
         height: 60.0,

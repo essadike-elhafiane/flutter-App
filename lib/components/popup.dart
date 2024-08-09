@@ -18,7 +18,6 @@ class BottomSheetContent extends StatelessWidget {
         ),
       ),
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
             padding: const EdgeInsets.only( right: 25.0),

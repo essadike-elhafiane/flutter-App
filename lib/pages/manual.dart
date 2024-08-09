@@ -22,9 +22,9 @@ class _ManualAlertState extends State<ManualAlert> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Remove the default back button
+        automaticallyImplyLeading: false, 
         backgroundColor:
-            const Color(0xFFE3E3E3), // Set the background color to gray
+            const Color(0xFFE3E3E3), 
         title: const Text('Manual alert'),
         centerTitle: false,
         actions: [
@@ -35,7 +35,7 @@ class _ManualAlertState extends State<ManualAlert> {
               height: 20.0,
             ),
             onPressed: () {
-              Navigator.pop(context); // Your custom action
+              Navigator.pop(context); 
             },
           ),
         ],
@@ -365,19 +365,19 @@ class __buildSendAlertButtonState extends State<_buildSendAlertButton> {
 
   void _onTapDown(TapDownDetails details) {
     setState(() {
-      _opacity = 0.5; // Decrease opacity
+      _opacity = 0.5;
     });
   }
 
   void _onTapUp(TapUpDetails details) {
     setState(() {
-      _opacity = 1.0; // Restore opacity
+      _opacity = 1.0;
     });
   }
 
   void _onTapCancel() {
     setState(() {
-      _opacity = 1.0; // Restore opacity
+      _opacity = 1.0; 
     });
   }
 
@@ -408,7 +408,7 @@ class __buildSendAlertButtonState extends State<_buildSendAlertButton> {
                 Icons.send,
                 color: Colors.white,
               ),
-              SizedBox(width: 8), // Add spacing between the icon and text
+              SizedBox(width: 8), 
               Text(
                 'Send Alert',
                 style: TextStyle(

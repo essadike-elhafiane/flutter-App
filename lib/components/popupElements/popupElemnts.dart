@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ElementBottomSheet extends StatelessWidget {
   const ElementBottomSheet({super.key});
@@ -35,7 +36,7 @@ class ElementBottomSheet extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
       const  Padding(
           padding: EdgeInsets.only(left: 35.0, right: 35.0),
           child: Row(
@@ -66,14 +67,14 @@ class ElementBottomSheet extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Padding(
-          padding: EdgeInsets.only(left: 35.0, right: 35.0),
+          padding: const EdgeInsets.only(left: 35.0, right: 35.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Image.asset('assets/popupIcons/priority.png',
-                    width: 30, height: 30,
+                  SvgPicture.asset('assets/images/priority.svg',
+                    width: 20, height: 20,
                   ),
                  const SizedBox(width: 23),
                  const Text(
@@ -86,7 +87,7 @@ class ElementBottomSheet extends StatelessWidget {
                   ),
                 ],
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios,
                 color: Color(0xFFABABAB),
                 size: 20,
@@ -94,16 +95,16 @@ class ElementBottomSheet extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Padding(
-          padding: EdgeInsets.only(left: 35.0, right: 35.0),
+          padding: const EdgeInsets.only(left: 35.0, right: 35.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Image.asset('assets/popupIcons/category.png',
-                    width: 30, height: 30,
+                  SvgPicture.asset('assets/images/category.svg',
+                    width: 20, height: 20,
                   ),
                   const SizedBox(width: 23),
                   const Text(
@@ -132,8 +133,8 @@ class ElementBottomSheet extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset('assets/popupIcons/subcategory.png',
-                    width: 30, height: 30,
+                  SvgPicture.asset('assets/images/subcategory.svg',
+                    width: 20, height: 20,
                   ),
                   const SizedBox(width: 23),
                  const  Text(
@@ -162,8 +163,8 @@ class ElementBottomSheet extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset('assets/popupIcons/tag.png',
-                    width: 30, height: 30,
+                  SvgPicture.asset('assets/images/tag.svg',
+                    width: 20, height: 20,
                   ),
                 const  SizedBox(width: 23),
                  const Text(

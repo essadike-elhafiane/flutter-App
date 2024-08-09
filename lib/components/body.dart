@@ -1,4 +1,3 @@
-// body.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/ObservationsChart.dart';
 import 'package:flutter_application_2/components/progressChart.dart';
@@ -12,7 +11,6 @@ class Body extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      // padding: const EdgeInsets.only(top: 9.0),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20.0),
@@ -24,7 +22,6 @@ class Body extends StatelessWidget {
         children: [
           const SizedBox(height: 20.0),
           SizedBox(
-            // padding: const EdgeInsets.all(10.0),
             height: 68,
             child: ListView(
               scrollDirection: Axis.horizontal,
@@ -33,9 +30,7 @@ class Body extends StatelessWidget {
                 Container(
                   height: 60,
                   width: 190,
-                  // padding: const EdgeInsets.all(0),
                   margin: const EdgeInsets.only(right: 8.0),
-                  // padding: const EdgeInsets.only(bottom: 10.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5.0),
@@ -107,9 +102,7 @@ class Body extends StatelessWidget {
                 Container(
                   height: 60,
                   width: 190,
-                  // padding: const EdgeInsets.all(0),
                   margin: const EdgeInsets.only(right: 8.0),
-                  // padding: const EdgeInsets.only(bottom: 10.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5.0),
@@ -144,9 +137,7 @@ class Body extends StatelessWidget {
                 Container(
                   height: 60,
                   width: 190,
-                  // padding: const EdgeInsets.all(0),
                   margin: const EdgeInsets.only(right: 8.0),
-                  // padding: const EdgeInsets.only(bottom: 10.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5.0),
@@ -181,9 +172,7 @@ class Body extends StatelessWidget {
                 Container(
                   height: 60,
                   width: 190,
-                  // padding: const EdgeInsets.all(0),
                   margin: const EdgeInsets.only(right: 8.0),
-                  // padding: const EdgeInsets.only(bottom: 10.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5.0),
@@ -242,7 +231,7 @@ class ItemsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 35, // Adjusted height for better display
+      height: 35,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.only(left: 10.0, right: 5.0),

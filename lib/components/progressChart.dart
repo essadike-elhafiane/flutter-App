@@ -92,7 +92,7 @@ class _ProgressChartState extends State<ProgressChart> {
                                   response.touchedSection != null) {
                                 touchedIndex = response
                                     .touchedSection!.touchedSectionIndex;
-                                _startHideTimer(); // Start the timer to hide the tooltip
+                                _startHideTimer(); 
                               } else {
                                 touchedIndex = null;
                               }
